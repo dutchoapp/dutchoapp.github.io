@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["JV2S3JV2Q8.com.dutcho.app"],
+        "components": [
+          {
+            "/": "/join/*",
+            "comment": "Group invite links open the Dutcho app"
+          }
+        ]
+      }
+    ]
+  }
+}
