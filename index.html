@@ -4,31 +4,158 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dutcho — Split bills. No drama.</title>
+  <meta name="description" content="Dutcho makes splitting expenses with friends, roommates and trips effortless. Just describe it, scan a receipt, or share from WhatsApp — and settle up over UPI in a tap." />
+  <meta property="og:title" content="Dutcho — Split bills. No drama." />
+  <meta property="og:description" content="Just describe an expense and Dutcho splits it. Settle up over UPI in a tap." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dutcho.app" />
+  <meta name="theme-color" content="#e8531a" />
+  <!-- To enable ads later: add your AdSense publisher script here and set data-ad-client on the .ad-slot below. -->
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #1a1a1a; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-    .wrap { text-align: center; padding: 40px 24px; }
-    .logo { width: 64px; height: 64px; background: #e8531a; border-radius: 20px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; }
-    h1 { font-size: 28px; font-weight: 800; color: #1a1a1a; margin-bottom: 8px; }
-    p { font-size: 16px; color: #666; margin-bottom: 32px; }
-    .links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    a { color: #e8531a; text-decoration: none; font-size: 15px; font-weight: 600; border: 2px solid #e8531a; padding: 10px 20px; border-radius: 100px; }
-    a:hover { background: #e8531a; color: #fff; }
+    :root { --brand:#e8531a; --brand-dark:#cf4715; --ink:#171719; --muted:#6b6b73; --faint:#9a9aa2; --line:#ececf0; --bg:#fff; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; color:var(--ink); background:var(--bg); line-height:1.5; -webkit-font-smoothing:antialiased; }
+    .wrap { max-width:1040px; margin:0 auto; padding:0 24px; }
+    a { color:inherit; text-decoration:none; }
+
+    /* Hero */
+    .hero { position:relative; overflow:hidden; text-align:center; padding:64px 24px 72px; background:radial-gradient(1200px 500px at 50% -10%, #ffe9df 0%, #fff 60%); }
+    .badge-pill { display:inline-flex; align-items:center; gap:7px; background:#fff; border:1px solid var(--line); color:var(--muted); font-size:13px; font-weight:600; padding:6px 14px; border-radius:100px; margin-bottom:22px; }
+    .dot { width:7px; height:7px; border-radius:50%; background:var(--brand); }
+    .logo { width:66px; height:66px; background:var(--brand); border-radius:20px; margin:0 auto 20px; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(232,83,26,.28); }
+    h1 { font-size:clamp(34px,6vw,56px); font-weight:850; letter-spacing:-1.5px; line-height:1.05; margin-bottom:16px; }
+    h1 .accent { color:var(--brand); }
+    .sub { font-size:clamp(16px,2.4vw,20px); color:var(--muted); max-width:560px; margin:0 auto 32px; }
+    .ctas { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+    .btn { display:inline-flex; align-items:center; gap:10px; font-weight:700; padding:14px 24px; border-radius:14px; font-size:16px; transition:transform .12s ease, box-shadow .12s ease; }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-ios { background:var(--ink); color:#fff; box-shadow:0 8px 24px rgba(0,0,0,.18); }
+    .btn-ios small { display:block; font-size:10px; font-weight:600; opacity:.8; letter-spacing:.3px; line-height:1; margin-bottom:2px; }
+    .btn-ios b { font-size:17px; font-weight:800; line-height:1; }
+    .btn-and { background:var(--brand); color:#fff; box-shadow:0 8px 24px rgba(232,83,26,.32); }
+    .btn-and:hover { background:var(--brand-dark); }
+    .storelabel { text-align:left; }
+    .hint { font-size:12.5px; color:var(--faint); margin-top:14px; }
+
+    /* Showcase */
+    .shots { display:flex; gap:18px; justify-content:center; padding:8px 24px 8px; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .shots::-webkit-scrollbar { display:none; }
+    .shots img { width:230px; height:auto; border-radius:26px; box-shadow:0 18px 50px rgba(20,20,40,.14); flex:0 0 auto; }
+
+    /* Features */
+    .section { padding:64px 0 24px; }
+    .eyebrow { text-align:center; color:var(--brand); font-weight:800; font-size:13px; letter-spacing:1.2px; text-transform:uppercase; margin-bottom:10px; }
+    h2 { text-align:center; font-size:clamp(26px,4vw,36px); font-weight:850; letter-spacing:-.8px; margin-bottom:40px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+    .card { background:#fff; border:1px solid var(--line); border-radius:20px; padding:26px 22px; transition:transform .15s ease, box-shadow .15s ease; }
+    .card:hover { transform:translateY(-3px); box-shadow:0 14px 34px rgba(20,20,40,.08); }
+    .emoji { font-size:26px; margin-bottom:14px; display:block; }
+    .card h3 { font-size:18px; font-weight:800; letter-spacing:-.3px; margin-bottom:6px; }
+    .card p { font-size:14.5px; color:var(--muted); }
+
+    /* CTA band */
+    .band { margin:56px 0 0; background:linear-gradient(135deg,#e8531a,#ff7a45); border-radius:28px; padding:48px 28px; text-align:center; color:#fff; }
+    .band h2 { color:#fff; margin-bottom:10px; }
+    .band p { opacity:.92; margin-bottom:26px; font-size:16px; }
+    .band .btn-ios { background:#fff; color:var(--ink); }
+    .band .btn-and { background:rgba(0,0,0,.22); }
+    .band .btn-and:hover { background:rgba(0,0,0,.32); }
+
+    /* Ad slot — clearly labelled, below the fold, never interrupts the flow */
+    .ad-wrap { margin:44px 0 0; text-align:center; }
+    .ad-label { font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--faint); margin-bottom:8px; }
+    .ad-slot { min-height:90px; max-width:728px; margin:0 auto; border:1px dashed var(--line); border-radius:14px; display:flex; align-items:center; justify-content:center; color:var(--faint); font-size:13px; background:#fafafa; }
+
+    footer { margin-top:56px; border-top:1px solid var(--line); padding:34px 24px 48px; text-align:center; }
+    .flinks { display:flex; gap:22px; justify-content:center; flex-wrap:wrap; margin-bottom:16px; }
+    .flinks a { color:var(--muted); font-size:14px; font-weight:600; }
+    .flinks a:hover { color:var(--brand); }
+    .made { font-size:13px; color:var(--faint); }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="logo">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-        <polygon points="16,4 28,28 4,28" fill="rgba(255,255,255,0.9)"/>
-      </svg>
+
+  <!-- ===== Hero ===== -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="badge-pill"><span class="dot"></span>Now with UPI settle-up &amp; Ask Dutcho</span>
+      <div class="logo">
+        <svg width="34" height="34" viewBox="0 0 32 32" fill="none"><polygon points="16,4 28,28 4,28" fill="rgba(255,255,255,.92)"/></svg>
+      </div>
+      <h1>Split bills.<br /><span class="accent">No drama.</span></h1>
+      <p class="sub">Just describe an expense — “1200 dinner with Sam, I paid” — and Dutcho splits it, tracks who owes who, and lets you settle up over UPI in a tap.</p>
+      <div class="ctas">
+        <a class="btn btn-ios" href="https://apps.apple.com/app/id6787498521">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.42 2.2-1.12 2.98-.77.87-2.03 1.54-3.06 1.46-.13-1.1.42-2.27 1.08-3 .76-.85 2.1-1.48 3.1-1.44zM20.9 17.06c-.55 1.27-.82 1.84-1.53 2.96-.99 1.57-2.39 3.52-4.12 3.54-1.54.02-1.93-1-4.02-.99-2.09.01-2.52 1.01-4.06.99-1.73-.02-3.06-1.78-4.05-3.35-2.77-4.39-3.06-9.54-1.35-12.28 1.21-1.94 3.13-3.08 4.93-3.08 1.84 0 2.99 1 4.51 1 1.47 0 2.37-1 4.5-1 1.61 0 3.32.88 4.54 2.4-3.99 2.18-3.34 7.88.72 9.81z"/></svg>
+          <span class="storelabel"><small>Download on the</small><b>App Store</b></span>
+        </a>
+        <a class="btn btn-and" href="https://github.com/dutchoapp/dutchoapp.github.io/releases/latest/download/dutcho.apk">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
+          <span class="storelabel"><small>Get the</small><b>Android APK</b></span>
+        </a>
+      </div>
+      <p class="hint">iPhone &amp; iPad on the App Store · Android via direct download (allow installs from your browser if prompted)</p>
     </div>
-    <h1>Dutcho</h1>
-    <p>Split bills. No drama.</p>
-    <div class="links">
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms of Service</a>
+  </header>
+
+  <!-- ===== Screenshots ===== -->
+  <div class="shots">
+    <img src="/assets/shot-1.png" alt="See who owes who in Dutcho" loading="lazy" />
+    <img src="/assets/shot-2.png" alt="A Dutcho group for every plan" loading="lazy" />
+    <img src="/assets/shot-3.png" alt="Split bills, no drama" loading="lazy" />
+  </div>
+
+  <!-- ===== Features ===== -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Why Dutcho</p>
+      <h2>The fastest way to split anything</h2>
+      <div class="grid">
+        <div class="card"><span class="emoji">💬</span><h3>Just describe it</h3><p>Type it like you'd say it — “1200 dinner with Sam.” Dutcho fills in the amount, people and split.</p></div>
+        <div class="card"><span class="emoji">📸</span><h3>Scan a receipt</h3><p>Snap the bill and Dutcho reads the total and details, so you don't type a thing.</p></div>
+        <div class="card"><span class="emoji">🟢</span><h3>Share from WhatsApp</h3><p>Forward a message straight to Dutcho and it becomes an expense in seconds.</p></div>
+        <div class="card"><span class="emoji">⚡</span><h3>Settle over UPI</h3><p>Pay what you owe with a tap or a scannable QR — GPay, PhonePe, Paytm, BHIM.</p></div>
+        <div class="card"><span class="emoji">🧠</span><h3>Ask Dutcho</h3><p>“How much does Priya owe me?” Get a straight answer, in plain words.</p></div>
+        <div class="card"><span class="emoji">👥</span><h3>Groups for everything</h3><p>Trips, flatmates, regular crews — clear balances, gentle reminders, no awkwardness.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA band ===== -->
+  <div class="wrap">
+    <section class="band">
+      <h2>Ready to stop chasing friends for money?</h2>
+      <p>Free to download. No drama, promise.</p>
+      <div class="ctas">
+        <a class="btn btn-ios" href="https://apps.apple.com/app/id6787498521">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.42 2.2-1.12 2.98-.77.87-2.03 1.54-3.06 1.46-.13-1.1.42-2.27 1.08-3 .76-.85 2.1-1.48 3.1-1.44zM20.9 17.06c-.55 1.27-.82 1.84-1.53 2.96-.99 1.57-2.39 3.52-4.12 3.54-1.54.02-1.93-1-4.02-.99-2.09.01-2.52 1.01-4.06.99-1.73-.02-3.06-1.78-4.05-3.35-2.77-4.39-3.06-9.54-1.35-12.28 1.21-1.94 3.13-3.08 4.93-3.08 1.84 0 2.99 1 4.51 1 1.47 0 2.37-1 4.5-1 1.61 0 3.32.88 4.54 2.4-3.99 2.18-3.34 7.88.72 9.81z"/></svg>
+          <span class="storelabel"><small>Download on the</small><b>App Store</b></span>
+        </a>
+        <a class="btn btn-and" href="https://github.com/dutchoapp/dutchoapp.github.io/releases/latest/download/dutcho.apk">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
+          <span class="storelabel"><small>Get the</small><b>Android APK</b></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Sponsored slot: below the content, clearly labelled, dormant until an AdSense client id is added. -->
+    <div class="ad-wrap">
+      <div class="ad-label">Sponsored</div>
+      <ins class="ad-slot" aria-hidden="true">Ad space</ins>
     </div>
   </div>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="flinks">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="https://apps.apple.com/app/id6787498521">App Store</a>
+      <a href="https://github.com/dutchoapp/dutchoapp.github.io/releases/latest/download/dutcho.apk">Android APK</a>
+    </div>
+    <p class="made">Crafted in India 🇮🇳 · Dutcho</p>
+  </footer>
+
 </body>
 </html>
