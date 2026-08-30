@@ -12,10 +12,13 @@ a { color:inherit; text-decoration:none; }
 .brand { display:flex; align-items:center; gap:10px; font-weight:850; letter-spacing:-.4px; font-size:18px; }
 .brand .mark { width:30px; height:30px; background:var(--brand); border-radius:9px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(232,83,26,.28); }
 .nav-links { display:flex; gap:22px; align-items:center; }
+.nav-cta, .nav-signin { white-space:nowrap; }
 .nav-links a { color:var(--muted); font-size:14.5px; font-weight:600; }
 .nav-links a:hover, .nav-links a.active { color:var(--brand); }
 .nav-cta { background:var(--ink); color:#fff !important; padding:9px 16px; border-radius:11px; font-size:14px; font-weight:700; }
-@media (max-width:600px){ .nav-links a:not(.nav-cta){ display:none; } }
+.nav-signin { border:1.5px solid var(--line); padding:8px 14px; border-radius:10px; color:var(--ink) !important; font-weight:700; }
+.nav-signin:hover { border-color:var(--brand); color:var(--brand) !important; }
+@media (max-width:600px){ .nav-links a:not(.nav-cta):not(.nav-signin){ display:none; } .nav-signin{ padding:7px 12px; } }
 
 /* Page container */
 .page { max-width:760px; margin:0 auto; padding:44px 24px 12px; }

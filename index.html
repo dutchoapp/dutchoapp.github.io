@@ -28,9 +28,24 @@
     /* Hero */
     .hero { position:relative; overflow:hidden; text-align:center; padding:64px 24px 72px; background:radial-gradient(1200px 500px at 50% -10%, #ffe9df 0%, #fff 60%); }
     .badge-pill { display:inline-flex; align-items:center; gap:7px; background:#fff; border:1px solid var(--line); color:var(--muted); font-size:13px; font-weight:600; padding:6px 14px; border-radius:100px; margin-bottom:22px; }
-    .signin { position:absolute; top:18px; right:20px; z-index:6; display:inline-flex; align-items:center; gap:6px; color:var(--brand); font-weight:700; font-size:14px; text-decoration:none; border:1.5px solid var(--brand); padding:8px 16px; border-radius:999px; background:rgba(255,255,255,.72); transition:background .15s,color .15s; }
-    .signin:hover { background:var(--brand); color:#fff; }
-    @media (max-width:520px){ .signin{ top:12px; right:12px; padding:7px 13px; font-size:13px; } }
+    /* Top nav — matches the shared content.css nav on every subpage */
+    .nav { position:sticky; top:0; z-index:20; background:rgba(255,255,255,.9); backdrop-filter:saturate(180%) blur(10px); -webkit-backdrop-filter:saturate(180%) blur(10px); border-bottom:1px solid var(--line); }
+    .nav-in { max-width:1040px; margin:0 auto; padding:12px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:850; letter-spacing:-.4px; font-size:18px; color:var(--ink); }
+    .brand .mark { width:30px; height:30px; background:var(--brand); border-radius:9px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(232,83,26,.28); }
+    .nav-links { display:flex; gap:22px; align-items:center; }
+    .nav-cta, .nav-signin { white-space:nowrap; }
+    .nav-links a { color:var(--muted); font-size:14.5px; font-weight:600; }
+    .nav-links a:hover, .nav-links a.active { color:var(--brand); }
+    .nav-cta { background:var(--ink); color:#fff !important; padding:9px 16px; border-radius:11px; font-size:14px; font-weight:700; }
+    .nav-signin { border:1.5px solid var(--line); padding:8px 14px; border-radius:10px; color:var(--ink) !important; font-weight:700; }
+    .nav-signin:hover { border-color:var(--brand); color:var(--brand) !important; }
+    @media (max-width:600px){ .nav-links a:not(.nav-cta):not(.nav-signin){ display:none; } .nav-signin{ padding:7px 12px; } }
+    /* Hero trust line + browser link */
+    .trust { display:inline-flex; align-items:center; gap:7px; font-size:13px; color:var(--muted); margin-top:16px; font-weight:600; }
+    .trust svg { flex:0 0 auto; color:#159a4e; }
+    .weblink { margin-top:14px; font-size:14.5px; }
+    .weblink a { color:var(--brand); font-weight:700; border-bottom:1px solid rgba(232,83,26,.3); }
     .dot { width:7px; height:7px; border-radius:50%; background:var(--brand); }
     .logo { width:66px; height:66px; background:var(--brand); border-radius:20px; margin:0 auto 20px; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(232,83,26,.28); }
     h1 { font-size:clamp(34px,6vw,56px); font-weight:850; letter-spacing:-1.5px; line-height:1.05; margin-bottom:16px; }
@@ -100,9 +115,16 @@
 </head>
 <body>
 
+  <!-- ===== Top nav ===== -->
+  <nav class="nav"><div class="nav-in">
+    <a class="brand" href="/"><span class="mark"><svg width="17" height="17" viewBox="0 0 32 32" fill="none" aria-hidden="true"><polygon points="16,3 29,15.4 3,15.4" fill="rgba(255,255,255,.95)"/><polygon points="3,16.6 29,16.6 16,29" fill="rgba(255,255,255,.6)"/></svg></span>Dutcho</a>
+    <div class="nav-links">
+      <a href="/guides/">Guides</a><a href="/about/">About</a><a href="/faq/">FAQ</a><a class="nav-signin" href="https://app.dutcho.app">Sign in</a><a class="nav-cta" href="https://apps.apple.com/app/id6787498521">Get the app</a>
+    </div>
+  </div></nav>
+
   <!-- ===== Hero ===== -->
   <header class="hero">
-    <a class="signin" href="https://app.dutcho.app">Sign in</a>
     <div class="wrap">
       <span class="badge-pill"><span class="dot"></span>Now with UPI settle-up &amp; Ask Dutcho</span>
       <div class="logo">
@@ -124,6 +146,11 @@
         </a>
       </div>
       <p class="hint">iPhone &amp; iPad on the App Store · Android via a quick guided install</p>
+      <p class="trust">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l9 4v6c0 5.25-3.6 9.74-9 11-5.4-1.26-9-5.75-9-11V5l9-4zm-1.2 14.2l6-6-1.4-1.4-4.6 4.6-2-2L7.4 11.8l3.4 3.4z"/></svg>
+        Your bank &amp; card details never touch Dutcho — you pay through your own UPI app.
+      </p>
+      <p class="weblink"><a href="https://app.dutcho.app">Or use Dutcho right in your browser — nothing to install →</a></p>
     </div>
   </header>
 
