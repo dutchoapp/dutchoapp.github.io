@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — RateBite</title>
+<meta name="description" content="How RateBite handles data — the short version: we don't collect personal information about you.">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #fbfcfb;
+    --surface: #f1f5f2;
+    --ink: #17211c;
+    --muted: #5b6b62;
+    --line: #dfe6e1;
+    --accent: #158043;
+    --accent-soft: #e7f3ec;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans: "Public Sans", system-ui, -apple-system, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #0e1512;
+      --surface: #16201b;
+      --ink: #e8efe9;
+      --muted: #9aa8a0;
+      --line: #263029;
+      --accent: #34c777;
+      --accent-soft: #16241c;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 42rem; margin: 0 auto; padding: clamp(2rem, 5vw, 4.5rem) 1.5rem 4rem; }
+  header { display: flex; flex-direction: column; gap: 1.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+  .brand { display: flex; align-items: center; gap: 0.7rem; }
+  .brand svg { width: 34px; height: 34px; display: block; }
+  .brand .name { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em; }
+  .brand .name b { color: var(--accent); font-weight: 600; }
+  .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance; margin: 0.2rem 0 0; }
+  .updated { color: var(--muted); font-size: 0.9rem; }
+  .updated time { font-variant-numeric: tabular-nums; }
+  .tldr { margin: 2.5rem 0; padding: 1.4rem 1.5rem; background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; }
+  .tldr h2 { font-family: var(--sans); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; font-weight: 600; color: var(--accent); margin-bottom: 0.7rem; }
+  .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .tldr li { position: relative; padding-left: 1.5rem; font-size: 0.98rem; }
+  .tldr li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  section { margin-top: 2.75rem; }
+  h2.sec { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; letter-spacing: -0.01em; margin-bottom: 0.6rem; display: flex; gap: 0.7rem; align-items: baseline; }
+  h2.sec .n { font-family: var(--sans); font-size: 0.8rem; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+  p { margin-bottom: 1rem; }
+  a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+  strong { font-weight: 600; }
+  ul.plain { margin-bottom: 1rem; padding-left: 1.2rem; }
+  ul.plain li { margin-bottom: 0.4rem; }
+  .note { font-size: 0.85rem; color: var(--muted); }
+  footer { margin-top: 3.5rem; padding-top: 1.75rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; display: flex; flex-direction: column; gap: 0.35rem; }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <mask id="bite" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+          <rect width="100" height="100" fill="black"/>
+          <path d="M50 18 L58.8 39.9 L82.3 41.5 L64.3 56.6 L70 79.5 L50 67 L30 79.5 L35.7 56.6 L17.7 41.5 L41.2 39.9 Z" fill="white"/>
+          <circle cx="74.5" cy="33" r="16" fill="black"/>
+        </mask>
+        <rect width="100" height="100" fill="var(--accent)" mask="url(#bite)"/>
+      </svg>
+      <span class="name">Rate<b>Bite</b></span>
+    </div>
+    <div>
+      <p class="eyebrow">Privacy Policy</p>
+      <h1>We don't collect data about you.</h1>
+    </div>
+    <p class="updated">Last updated <time datetime="2026-09-11">11 September 2026</time></p>
+  </header>
+
+  <div class="tldr">
+    <h2>The short version</h2>
+    <ul>
+      <li>RateBite has no accounts and no sign-in — we never ask for your name, email, phone, or location.</li>
+      <li>We don't use analytics or advertising, and we never sell data.</li>
+      <li>Your app preferences stay on your device. The ratings you see are about restaurants, not you.</li>
+    </ul>
+  </div>
+
+  <p>RateBite is a restaurant-discovery app that blends ratings from multiple sources into one honest score, starting with Bengaluru and Hyderabad. This policy explains, plainly, what happens with data when you use it. It applies to the RateBite mobile app and website.</p>
+
+  <section>
+    <h2 class="sec"><span class="n">01</span> Information we don't collect</h2>
+    <p>RateBite works without an account. There's no sign-up and no login, so we don't ask for or store personal information about you — no name, email address, phone number, contacts, precise location, or payment details. Because we don't build a profile of you, there is no personal profile to lose, share, or sell.</p>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="n">02</span> Data stored on your device</h2>
+    <p>To make the app pleasant to use, RateBite remembers small preferences locally — for example your most recent search or which view you last opened. This information is stored only in your device's app storage. It stays on your device, is never transmitted to us, and is removed when you clear the app's data or uninstall the app.</p>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="n">03</span> Information our servers receive</h2>
+    <p>When the app loads restaurant listings and scores, your device makes an ordinary network request to our hosting provider. As with any request on the internet, that provider automatically processes basic technical information such as your IP address in order to deliver a response. We use this only to serve content and keep the service running — not to identify you, track you across apps, or build an advertising profile. We don't combine it with any personal information, because we don't hold any.</p>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="n">04</span> Where the ratings come from</h2>
+    <p>The heart of RateBite is a single "trust score" computed from restaurant ratings published on public platforms — currently <strong>Google</strong> and <strong>Swiggy</strong> — corrected for each platform's bias and review volume. This is factual information about <em>restaurants</em>, not about you. Each restaurant's page shows which sources contributed, so the number is transparent. Source names and links belong to their respective owners.</p>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="n">05</span> No tracking, ads, or data sales</h2>
+    <p>RateBite contains no third-party analytics SDKs, no advertising networks, and no social-media trackers. We do not sell, rent, or share personal data with anyone, because we don't collect it. If this ever changes, we will update this policy and describe exactly what changed before it takes effect.</p>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="n">06</span> Service providers</h2>
+    <p>We rely on a small number of providers to run the app:</p>
+    <ul class="plain">
+      <li><strong>Supabase</strong> — hosts the restaurant database the app reads from (see the <a href="https://supabase.com/privacy" rel="noopener">Supabase privacy policy</a>).</li>
+      <li><strong>App stores</strong> — Apple's App Store and Google Play distribute the app and provide us only with aggregate, anonymized install and crash statistics under their own terms.</li>
+    </ul>
+    <p>Restaurant data originates from public platforms including <a href="https://policies.google.com/privacy" rel="noopener">Google</a> and <a href="https://www.swiggy.com/privacy-policy" rel="noopener">Swiggy</a>, whose policies govern their own services.</p>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="n">07</span> Children</h2>
+    <p>RateBite is a general-audience app for discovering places to eat and is not directed at children. We do not knowingly collect personal information from anyone, including children.</p>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="n">08</span> Your choices and rights</h2>
+    <p>Because we hold no personal information tied to you, there is no personal account to access, correct, export, or delete. You remain in full control of the on-device preferences described above: clear the app's storage or uninstall the app to remove them at any time. If you have questions about your rights under laws such as India's Digital Personal Data Protection Act, contact us below.</p>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="n">09</span> Changes to this policy</h2>
+    <p>If we add features that change how data is handled — for example optional accounts or saved favourites — we will revise this policy, update the date at the top, and, where the change is significant, surface a notice in the app before the new behaviour begins.</p>
+  </section>
+
+  <section>
+    <h2 class="sec"><span class="n">10</span> Contact</h2>
+    <p>Questions about this policy or your data? Email <a href="mailto:dutcho.app@gmail.com">dutcho.app@gmail.com</a> and we'll respond.</p>
+  </section>
+
+  <footer>
+    <span>RateBite — one honest rating for where you eat.</span>
+    <span class="note">This policy covers the RateBite app and website. It does not cover the third-party platforms whose ratings we aggregate.</span>
+  </footer>
+</div>
+</body>
+</html>
