@@ -36,6 +36,12 @@
   .bar { flex:1; background:var(--accent); border-radius:3px 3px 0 0; min-height:2px; opacity:.85; }
   .bar.zero { background:var(--border); opacity:1; }
   .bar-axis { display:flex; justify-content:space-between; font-size:10px; color:var(--faint); margin-top:6px; }
+  .chtab { width:100%; border-collapse:collapse; font-size:14px; }
+  .chtab th { text-align:right; font-size:11px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.3px; padding:0 0 10px; }
+  .chtab th:first-child, .chtab td:first-child { text-align:left; }
+  .chtab td { padding:11px 0; border-top:1px solid var(--border); text-align:right; }
+  .chtab td:first-child { font-weight:700; }
+  .chtab .svc { font-size:11px; color:var(--faint); font-weight:500; margin-left:6px; }
   .gate { max-width:380px; margin:12vh auto 0; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:26px; text-align:center; }
   .gate h1 { font-size:20px; margin:12px 0 6px; }
   .gate p { font-size:14px; color:var(--muted); margin:0 0 18px; line-height:1.5; }
@@ -91,6 +97,22 @@
       <div class="card">
         <div class="bars" id="bars"></div>
         <div class="bar-axis" id="axis"></div>
+      </div>
+
+      <div id="socialSection">
+        <div class="section-label">Social · last 30 days <span class="updated" id="social_updated"></span></div>
+        <div class="grid">
+          <div class="kpi hero"><div class="label">Posts</div><div class="value" id="s_posts">–</div></div>
+          <div class="kpi"><div class="label">Reactions</div><div class="value" id="s_reactions">–</div></div>
+          <div class="kpi"><div class="label">Comments</div><div class="value" id="s_comments">–</div></div>
+          <div class="kpi"><div class="label">Eng. rate</div><div class="value" id="s_eng">–</div></div>
+        </div>
+        <div class="card" style="margin-top:12px; overflow-x:auto;">
+          <table class="chtab">
+            <thead><tr><th>Channel</th><th>Posts</th><th>Impressions</th><th>Reach</th><th>Reactions</th><th>Comments</th></tr></thead>
+            <tbody id="s_channels"></tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -167,6 +189,34 @@
         const fmt = s => { const p = s.split('-'); return p[2] + '/' + p[1]; };
         axis.innerHTML = '<span>' + fmt(series[0].day) + '</span><span>' + fmt(series[Math.floor(series.length/2)].day) + '</span><span>' + fmt(series[series.length-1].day) + '</span>';
       }
+
+      renderSocial(d.social, d.social_updated_at);
+    }
+
+    function renderSocial(soc, updatedAt) {
+      const sec = document.getElementById('socialSection');
+      if (!soc || !soc.total) { sec.style.display = 'none'; return; }
+      sec.style.display = 'block';
+      const t = soc.total;
+      document.getElementById('s_posts').textContent = n(t.posts);
+      document.getElementById('s_reactions').textContent = n(t.reactions);
+      document.getElementById('s_comments').textContent = n(t.comments);
+      document.getElementById('s_eng').textContent = (t.engagement_rate ?? 0) + '%';
+      document.getElementById('social_updated').textContent = updatedAt ? '· as of ' + new Date(updatedAt).toLocaleDateString('en-IN') : '';
+      const tb = document.getElementById('s_channels');
+      tb.innerHTML = '';
+      const cell = v => (v == null ? '–' : n(v));
+      (soc.channels || []).forEach(c => {
+        const tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td>' + c.name + '</td>' +
+          '<td>' + cell(c.posts) + '</td>' +
+          '<td>' + cell(c.impressions) + '</td>' +
+          '<td>' + cell(c.reach) + '</td>' +
+          '<td>' + cell(c.reactions) + '</td>' +
+          '<td>' + cell(c.comments) + '</td>';
+        tb.appendChild(tr);
+      });
     }
 
     document.getElementById('token').addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
