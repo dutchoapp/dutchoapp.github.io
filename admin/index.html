@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Dutcho · Admin</title>
+<link rel="icon" type="image/png" href="/favicon.png?v=2" />
+<style>
+  :root { --accent:#e8531a; --bg:#f2f0f5; --card:#fff; --ink:#171422; --muted:#6b6777; --faint:#a29eb0; --border:#eeebf3; --green:#0f9d58; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; }
+  .wrap { max-width:1000px; margin:0 auto; padding:24px 16px 60px; }
+  header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:6px; }
+  .brand { display:flex; align-items:center; gap:9px; font-size:19px; font-weight:800; letter-spacing:-.3px; }
+  .brand img { width:26px; height:26px; border-radius:6px; }
+  .brand .tag { font-size:12px; font-weight:700; color:#fff; background:var(--accent); padding:2px 8px; border-radius:6px; letter-spacing:.3px; }
+  .updated { font-size:12px; color:var(--faint); }
+  .btn { background:var(--accent); color:#fff; border:0; border-radius:10px; padding:9px 16px; font-size:14px; font-weight:700; cursor:pointer; }
+  .btn.ghost { background:#fff; color:var(--ink); border:1px solid var(--border); }
+  .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:18px; }
+  @media (max-width:720px){ .grid { grid-template-columns:repeat(2,1fr); } }
+  .kpi { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 18px; }
+  .kpi .label { font-size:12px; color:var(--muted); font-weight:600; letter-spacing:.3px; text-transform:uppercase; }
+  .kpi .value { font-size:30px; font-weight:800; letter-spacing:-1px; margin-top:6px; }
+  .kpi .sub { font-size:12px; color:var(--faint); margin-top:2px; }
+  .kpi.hero .value { color:var(--accent); }
+  .section-label { font-size:12px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:var(--muted); margin:26px 4px 10px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:20px; }
+  .act-row { display:flex; align-items:center; justify-content:space-between; padding:10px 0; }
+  .act-row + .act-row { border-top:1px solid var(--border); }
+  .act-name { font-size:15px; font-weight:600; }
+  .act-num { font-size:15px; font-weight:800; }
+  .act-pct { font-size:12px; color:var(--muted); margin-left:8px; font-weight:600; }
+  .bars { display:flex; align-items:flex-end; gap:3px; height:160px; margin-top:8px; }
+  .bar { flex:1; background:var(--accent); border-radius:3px 3px 0 0; min-height:2px; opacity:.85; }
+  .bar.zero { background:var(--border); opacity:1; }
+  .bar-axis { display:flex; justify-content:space-between; font-size:10px; color:var(--faint); margin-top:6px; }
+  .gate { max-width:380px; margin:12vh auto 0; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:26px; text-align:center; }
+  .gate h1 { font-size:20px; margin:12px 0 6px; }
+  .gate p { font-size:14px; color:var(--muted); margin:0 0 18px; line-height:1.5; }
+  .gate input { width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; font-size:15px; margin-bottom:12px; }
+  .err { color:#d33; font-size:13px; margin-top:10px; min-height:16px; }
+  #dash { display:none; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Token gate -->
+    <div id="gate" class="gate">
+      <div class="brand" style="justify-content:center;"><img src="/favicon.png" alt="" /> Dutcho <span class="tag">ADMIN</span></div>
+      <h1>Enter admin token</h1>
+      <p>This dashboard is private. Paste your admin token to view app analytics.</p>
+      <input id="token" type="password" placeholder="Admin token" autocomplete="off" />
+      <button class="btn" style="width:100%;" onclick="unlock()">Unlock</button>
+      <div class="err" id="gateErr"></div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dash">
+      <header>
+        <div class="brand"><img src="/favicon.png" alt="" /> Dutcho <span class="tag">ADMIN</span></div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span class="updated" id="updated"></span>
+          <button class="btn ghost" onclick="refresh()">Refresh</button>
+        </div>
+      </header>
+
+      <div class="grid">
+        <div class="kpi hero"><div class="label">Total users</div><div class="value" id="k_total">–</div><div class="sub" id="k_total_sub"></div></div>
+        <div class="kpi"><div class="label">Today</div><div class="value" id="k_today">–</div></div>
+        <div class="kpi"><div class="label">Last 7 days</div><div class="value" id="k_7d">–</div></div>
+        <div class="kpi"><div class="label">Last 30 days</div><div class="value" id="k_30d">–</div></div>
+      </div>
+
+      <div class="section-label">Usage</div>
+      <div class="grid">
+        <div class="kpi"><div class="label">Groups</div><div class="value" id="k_groups">–</div></div>
+        <div class="kpi"><div class="label">Expenses</div><div class="value" id="k_exp">–</div><div class="sub" id="k_exp_sub"></div></div>
+        <div class="kpi"><div class="label">Settlements</div><div class="value" id="k_settle">–</div></div>
+        <div class="kpi"><div class="label">Active · 7d</div><div class="value" id="k_active">–</div><div class="sub">did something</div></div>
+      </div>
+
+      <div class="section-label">Activation</div>
+      <div class="card">
+        <div class="act-row"><span class="act-name">Joined a group</span><span><span class="act-num" id="a_group">–</span><span class="act-pct" id="a_group_pct"></span></span></div>
+        <div class="act-row"><span class="act-name">Added an expense</span><span><span class="act-num" id="a_exp">–</span><span class="act-pct" id="a_exp_pct"></span></span></div>
+      </div>
+
+      <div class="section-label">Signups · last 30 days</div>
+      <div class="card">
+        <div class="bars" id="bars"></div>
+        <div class="bar-axis" id="axis"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script>
+    const SUPABASE_URL = 'https://hgyuqmqtvxwbueowslvd.supabase.co';
+    const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhneXVxbXF0dnh3YnVlb3dzbHZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwMzAwNzUsImV4cCI6MjA5NjYwNjA3NX0.DU2wd_DdA5rb109Zxxe6jrTuwo7M9JMRlaG72WTqF2M';
+    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    const KEY = 'dutcho_admin_token';
+
+    function tokenFromUrl() {
+      const t = new URLSearchParams(location.search).get('token');
+      if (t) { try { sessionStorage.setItem(KEY, t); } catch {} history.replaceState(null, '', location.pathname); return t; }
+      try { return sessionStorage.getItem(KEY) || ''; } catch { return ''; }
+    }
+    function unlock() {
+      const t = document.getElementById('token').value.trim();
+      if (!t) return;
+      try { sessionStorage.setItem(KEY, t); } catch {}
+      load(t);
+    }
+    function refresh() { load(tokenFromUrl()); }
+    function n(x){ return (x ?? 0).toLocaleString('en-IN'); }
+    function pct(a,b){ return b > 0 ? Math.round((a/b)*100) + '%' : '–'; }
+
+    async function load(token) {
+      const gateErr = document.getElementById('gateErr');
+      gateErr.textContent = '';
+      if (!token) return;
+      const { data, error } = await db.rpc('get_admin_stats', { p_token: token });
+      if (error || !data) {
+        gateErr.textContent = 'Invalid token or network error. Try again.';
+        try { sessionStorage.removeItem(KEY); } catch {}
+        document.getElementById('gate').style.display = 'block';
+        document.getElementById('dash').style.display = 'none';
+        return;
+      }
+      render(data);
+    }
+
+    function render(d) {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('dash').style.display = 'block';
+      document.getElementById('k_total').textContent = n(d.users_total);
+      document.getElementById('k_total_sub').textContent = '+' + n(d.users_30d) + ' this month';
+      document.getElementById('k_today').textContent = n(d.users_today);
+      document.getElementById('k_7d').textContent = n(d.users_7d);
+      document.getElementById('k_30d').textContent = n(d.users_30d);
+      document.getElementById('k_groups').textContent = n(d.groups_total);
+      document.getElementById('k_exp').textContent = n(d.expenses_total);
+      document.getElementById('k_exp_sub').textContent = n(d.expenses_7d) + ' in last 7d';
+      document.getElementById('k_settle').textContent = n(d.settlements_total);
+      document.getElementById('k_active').textContent = n(d.active_7d);
+      document.getElementById('a_group').textContent = n(d.users_in_group);
+      document.getElementById('a_group_pct').textContent = pct(d.users_in_group, d.users_total);
+      document.getElementById('a_exp').textContent = n(d.users_with_expense);
+      document.getElementById('a_exp_pct').textContent = pct(d.users_with_expense, d.users_total);
+      document.getElementById('updated').textContent = 'Updated ' + new Date(d.generated_at).toLocaleString('en-IN');
+
+      const series = d.signups_daily || [];
+      const max = Math.max(1, ...series.map(x => x.count));
+      const bars = document.getElementById('bars');
+      bars.innerHTML = '';
+      series.forEach(pt => {
+        const bar = document.createElement('div');
+        bar.className = 'bar' + (pt.count === 0 ? ' zero' : '');
+        bar.style.height = (pt.count === 0 ? 2 : Math.round((pt.count / max) * 158)) + 'px';
+        bar.title = pt.day + ': ' + pt.count + ' signup' + (pt.count === 1 ? '' : 's');
+        bars.appendChild(bar);
+      });
+      const axis = document.getElementById('axis');
+      if (series.length) {
+        const fmt = s => { const p = s.split('-'); return p[2] + '/' + p[1]; };
+        axis.innerHTML = '<span>' + fmt(series[0].day) + '</span><span>' + fmt(series[Math.floor(series.length/2)].day) + '</span><span>' + fmt(series[series.length-1].day) + '</span>';
+      }
+    }
+
+    document.getElementById('token').addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
+    const initial = tokenFromUrl();
+    if (initial) load(initial);
+  </script>
+</body>
+</html>
