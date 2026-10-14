@@ -15,4 +15,5 @@
   <url><loc>https://dutcho.app/delete-account/</loc><priority>0.5</priority></url>
   <url><loc>https://dutcho.app/privacy/</loc><priority>0.4</priority></url>
   <url><loc>https://dutcho.app/terms/</loc><priority>0.4</priority></url>
+  <url><loc>https://dutcho.app/duel/</loc><priority>0.7</priority></url>
 </urlset>
