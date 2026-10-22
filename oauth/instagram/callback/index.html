@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Connecting Instagram…</title>
+<style>body{font:16px system-ui,sans-serif;margin:0;display:grid;place-items:center;min-height:100vh;color:#2a1608;background:#fff8f3}main{max-width:26rem;padding:1.5rem;text-align:center}</style>
+</head>
+<body>
+<main>
+<h1>Connecting Instagram…</h1>
+<p id="msg">Returning you to AppPilot on this computer.</p>
+</main>
+<script>
+// Hands Instagram's one-time response (code/state) to AppPilot running on the same computer.
+// The target is fixed to localhost, so the values never go to any other server.
+(function () {
+  var q = location.search;
+  if (!q) { document.getElementById('msg').textContent = 'Nothing to connect. You can close this tab.'; return; }
+  location.replace('http://127.0.0.1:4317/oauth/instagram/callback' + q);
+})();
+</script>
+<noscript><p>Enable JavaScript to finish connecting.</p></noscript>
+</body>
+</html>
