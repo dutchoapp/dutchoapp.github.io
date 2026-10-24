@@ -4,14 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Duel — 2 Player Games Offline</title>
-<meta name="description" content="9 free two-player games for one phone: Tic-Tac-Toe, Connect 4, Checkers, Air Hockey and more. Play a friend or beat the bot. Offline, no sign-up." />
+<meta name="description" content="Free two-player games for one phone: Reversi, Ludo, Carrom, Air Hockey, Darts and more. Play a friend or beat the bot on easy, normal or hard. Try it in your browser, no sign-up." />
 <meta property="og:title" content="Duel — 2 Player Games Offline" />
-<meta property="og:description" content="One phone. Two players. 9 games, offline. Beat the bot if you can." />
+<meta property="og:description" content="One phone. Two players. Play a friend or beat the bot. Try it free in your browser." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://dutcho.app/duel/" />
 <meta name="theme-color" content="#ff5a1f" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MobileApplication","name":"Duel - 2 Player Games Offline","applicationCategory":"GameApplication","operatingSystem":"iOS, Android","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"downloadUrl":"https://apps.apple.com/app/id6810398308"}
+{"@context":"https://schema.org","@type":"MobileApplication","name":"Duel - 2 Player Games Offline","applicationCategory":"GameApplication","operatingSystem":"iOS, Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"downloadUrl":"https://apps.apple.com/app/id6810398308"}
 </script>
 <style>
 :root{--o:#ff5a1f;--t:#16b9c9;--ink:#241c2e;--cream:#fff0d9;--mut:#6a5b4e}
@@ -24,11 +24,12 @@ h1 span{color:var(--o)}
 .sub{margin-top:16px;font-size:20px;color:var(--mut)}
 .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:28px 0 8px}
 .btn{display:inline-block;padding:14px 26px;border-radius:999px;background:var(--ink);color:var(--cream);text-decoration:none;font-weight:700}
+.btn.play{background:var(--o);color:#fff}
 .btn.alt{background:#fff;color:var(--ink);border:3px solid var(--ink)}
 .note{font-size:14px;color:var(--mut);text-align:center}
 .shots{display:flex;gap:14px;overflow-x:auto;padding:28px 0}
 .shots img{height:440px;border-radius:22px;flex:none}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:12px 0 40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:12px 0 40px}
 .g{background:#fff;border:3px solid var(--t);border-radius:18px;padding:16px;font-weight:700}
 footer{text-align:center;color:var(--mut);font-size:14px;padding:30px 0 50px}
 a{color:inherit}
@@ -38,23 +39,27 @@ a{color:inherit}
 <div class="wrap">
 <header>
 <h1>BEAT THE BOT.<br><span>IF YOU CAN.</span></h1>
-<p class="sub">Duel packs 9 two-player games into one free app. One phone, two players, no wifi.</p>
+<p class="sub">Two-player games for one phone. Play a friend, or take on the bot at easy, normal or hard. Free, no wifi, no sign-up.</p>
 <div class="btns">
-<a class="btn" href="https://apps.apple.com/app/id6810398308">Download on the App Store</a>
-<a class="btn alt" href="https://github.com/dutchoapp/dutchoapp.github.io/releases/download/duel-v1.0.5/duel.apk">Android APK</a>
+<a class="btn play" id="play" href="/duel/play/">▶ Play now in your browser</a>
+<a class="btn alt" id="store" href="https://apps.apple.com/app/id6810398308">Get the iPhone app</a>
 </div>
-<p class="note">Android: after downloading, allow “install unknown apps” for your browser. Google Play and other stores coming.</p>
+<p class="note">Android: play in your browser now. Google Play is coming.</p>
 </header>
-<div class="shots">
-<img src="/assets/duel/01_Hero.png" alt="Duel: one phone, two players" />
-<img src="/assets/duel/02_BeatTheBot.png" alt="Play vs Pebble, Bolt or Nova" />
-<img src="/assets/duel/03_NineGames.png" alt="9 games, zero wifi" />
-</div>
-<h2>9 games</h2>
+<h2>Pick a game</h2>
 <div class="grid">
-<div class="g">Tic-Tac-Toe</div><div class="g">Connect 4</div><div class="g">Checkers</div><div class="g">Dots &amp; Boxes</div><div class="g">Chain Reaction</div><div class="g">Air Hockey</div><div class="g">Knife Thrower</div><div class="g">Sumo Smash</div><div class="g">Cake Memory</div>
+<div class="g">Reversi</div><div class="g">Ludo</div><div class="g">Snakes &amp; Ladders</div><div class="g">Memory Cards</div><div class="g">Carrom</div><div class="g">Darts</div><div class="g">Cup Pong</div><div class="g">Ping Pong</div><div class="g">Sea Battle</div><div class="g">Animal Stack</div><div class="g">Maze Paint</div><div class="g">Sudoku Race</div><div class="g">Quick Draw</div><div class="g">Liquid Sort</div><div class="g">Titanic</div><div class="g">Pen Flick</div><div class="g">Turf Rush</div><div class="g">Penalty Shootout</div><div class="g">Snack Snatch</div><div class="g">Stop the Clock</div><div class="g">Would You Rather</div><div class="g">Mancala</div><div class="g">Mob Clash</div><div class="g">Chain Reaction</div><div class="g">Knife Thrower</div><div class="g">Checkers</div><div class="g">Air Hockey</div><div class="g">Sumo Smash</div><div class="g">Cake Memory</div><div class="g">Tic-Tac-Toe</div><div class="g">Connect 4</div><div class="g">Dots &amp; Boxes</div>
 </div>
 <footer>© 2026 Dutcho · <a href="/privacy">Privacy</a> · <a href="mailto:support@dutcho.app">support@dutcho.app</a></footer>
 </div>
+<script>
+(function(){try{
+var q=new URLSearchParams(location.search),g=q.get('g')||'',src=q.get('s')||'';
+var ok=/^[a-z0-9]{1,20}$/.test(g)?g:'';
+var play=document.getElementById('play'),store=document.getElementById('store');
+if(ok)play.href='/duel/play/?g='+ok;
+store.href='https://apps.apple.com/app/id6810398308?ct='+encodeURIComponent('share-'+(ok||'home')+(src?'-'+src.replace(/[^a-z]/g,''):''));
+}catch(e){}})();
+</script>
 </body>
 </html>
