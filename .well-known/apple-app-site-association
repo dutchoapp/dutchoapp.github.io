@@ -2,11 +2,24 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["JV2S3JV2Q8.com.dutcho.app"],
+        "appIDs": [
+          "JV2S3JV2Q8.com.dutcho.app"
+        ],
         "components": [
           {
             "/": "/join/*",
             "comment": "Group invite links open the Dutcho app"
+          }
+        ]
+      },
+      {
+        "appIDs": [
+          "JV2S3JV2Q8.com.dutcho.duel"
+        ],
+        "components": [
+          {
+            "/": "/duel/join/*",
+            "comment": "Duel room invite links open the Duel app"
           }
         ]
       }

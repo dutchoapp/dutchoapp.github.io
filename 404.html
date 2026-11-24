@@ -120,6 +120,11 @@
     // path — including /join/<code> — and we branch on the path here.
     (function () {
       var p = window.location.pathname || '';
+      // Duel room invites (/duel/join/<code>) get their own page.
+      if (p.indexOf('/duel/join/') === 0 && p.length > '/duel/join/'.length) {
+        window.location.replace('/duel/join/?code=' + encodeURIComponent(p.slice('/duel/join/'.length).replace(/\/+$/, '')));
+        return;
+      }
       if (p.indexOf('/join/') === 0 && p.length > '/join/'.length) {
         document.getElementById('invite').classList.remove('hidden');
         // Fallback for older iOS: nudge the custom scheme.
