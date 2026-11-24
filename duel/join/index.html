@@ -37,10 +37,11 @@ a{color:inherit}
 <p class="eyebrow">You're invited</p>
 <h1>Play <span>Duel</span><br>with your friend</h1>
 <div id="ok" class="hidden">
-<p class="sub">Open the app and you'll land right in their room. New to Duel? Install it first, then enter this code under <b>Play Online &rarr; Join with a code</b>.</p>
+<p class="sub">Open the app and you'll land right in their room. No app? Play in your browser right now, or install Duel and enter this code under <b>Play Online &rarr; Join with a code</b>.</p>
 <div class="code" id="tiles" aria-label="Room code"></div>
 <p class="hint" id="hint">Room codes expire after a short while.</p>
 <a class="btn open" id="open" href="#">Open in Duel</a>
+<a class="btn alt" id="web" href="/duel/play/">Play in your browser (no install)</a>
 <button class="btn alt" id="copy" type="button">Copy code</button>
 <div class="row">
 <a class="btn" id="ios" href="https://apps.apple.com/app/id6810398308?ct=invite">App Store</a>
@@ -65,6 +66,7 @@ document.getElementById('ok').classList.remove('hidden');
 var tiles=document.getElementById('tiles');
 code.split('').forEach(function(c){var b=document.createElement('b');b.textContent=c;tiles.appendChild(b);});
 var open=document.getElementById('open');open.href='duel://join/'+code;
+document.getElementById('web').href='/duel/play/?join='+code;
 document.getElementById('android').href='https://play.google.com/store/apps/details?id=com.dutcho.duel&referrer='+encodeURIComponent('utm_source=invite&duelroom='+code);
 document.getElementById('copy').addEventListener('click',function(){
   var done=function(){document.getElementById('copy').textContent='Copied \u2713';};
